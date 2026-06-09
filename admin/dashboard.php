@@ -1,3 +1,12 @@
+<?php
+
+session_start();
+if(!isset($_SESSION['id_admin'])){
+    header('Location: login-admin.php');
+    exit;
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -70,77 +79,23 @@
                     </span>
                 </nav>
 
-                <!-- <div class="p-4">
+                <div class="p-4">
                     <div class="row">
-                        <div class="col-md-4 mb-3">
+                        <div class=" mb-3">
                             <div class="card card-dashboard">
                                 <div class="card-body">
-                                    <h6>Total Siswa</h6>
-                                    <h2>250</h2>
+                                    <h5>Selamat Datang, <?= $_SESSION['nama_admin'] ?></h5>
                                 </div>
                             </div>
-                        </div>
-
-                        <div class="col-md-4 mb-3">
-                            <div class="card card-dashboard">
-                                <div class="card-body">
-                                    <h6>Total Guru</h6>
-                                    <h2>30</h2>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4 mb-3">
-                            <div class="card card-dashboard">
-                                <div class="card-body">
-                                    <h6>Total Kelas</h6>
-                                    <h2>12</h2>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="card card-dashboard mt-3">
-                        <div class="card-header bg-white">
-                            Data Terbaru
-                        </div>
-
-                        <div class="card-body">
-
-                            <table class="table">
-
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama</th>
-                                        <th>Kelas</th>
-                                        <th>Status</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Galih</td>
-                                        <td>XII RPL</td>
-                                        <td>
-                                            <span class="badge bg-success">
-                                                Aktif
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-
-                            </table>
-
                         </div>
                     </div>
+                </div>
 
-                </div> -->
+                <div class="card card-dashboard mt-3">
+                    
+                </div>
 
             </div>
-
         </div>
     </div>
 </body>

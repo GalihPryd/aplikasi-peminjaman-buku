@@ -87,9 +87,40 @@
             $_SESSION['id_admin'] = $data['id_admin'];
             $_SESSION['username'] = $data['username'];
             $_SESSION['nama_admin'] = $data['nama_admin'];
-            header('Location: admin/dashboard.php');
+            
+            echo "
+                <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                <script>
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Login Berhasil!',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true
+                }).then(() =>{
+                    window.location.href = 'admin/dashboard.php';
+                });
+                </script>
+            ";
         }else{
-            echo "<script>alert('Login Gagal, Username & Password Salah'); </script>";
+            echo "
+                <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+                <script>
+                Swal.fire({
+                    toast: true,
+                    position: 'top-end',
+                    icon: 'error',
+                    title: 'Login Gagal!',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true
+                }).then(() =>{
+                    window.location.href = 'login-admin.php';
+                });
+                </script>
+            ";
         }
     }
     ?>
