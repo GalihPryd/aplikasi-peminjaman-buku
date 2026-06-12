@@ -52,7 +52,7 @@
             <div class="card login-card">
                 <div class="card-body p-5">
                     <h3 class="text-center mb-4">Login Dashboard</h3>
-                    <form method="post">
+                    <form method="post" class="mb-3">
                         <div class="mb-3">
                             <label>Username</label>
                             <input type="text" class="form-control" name="username" placeholder="Masukkan Username" autocomplete="new-password">
@@ -64,7 +64,9 @@
 
                         <button class="btn btn-login text-white w-100" name="loginAdmin" type="submit"> Login </button>
                     </form>
+                    <p class="text-muted text-center">Login Sebagai Anggota <a href="login-anggota.php">Masuk Sini</a></p>
                 </div>
+
             </div>
 
         </div>

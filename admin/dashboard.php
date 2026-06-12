@@ -2,7 +2,7 @@
 
 session_start();
 if(!isset($_SESSION['id_admin'])){
-    header('Location: login-admin.php');
+    header('Location: ../login-admin.php');
     exit;
 }
 
@@ -26,13 +26,14 @@ if(!isset($_SESSION['id_admin'])){
         }
 
         .sidebar a{
-            color:#cbd5e1;
+            color: #cbd5e1;
             text-decoration:none;
             display:block;
             padding:12px;
             border-radius:10px;
-            margin-bottom:5px;
+            margin-bottom:8px;
             font-size: 18px;
+            border-bottom: 1px solid #cbd5e1;
         }
 
         .sidebar a:hover{
@@ -61,11 +62,11 @@ if(!isset($_SESSION['id_admin'])){
                 <div class="logo mb-4">
                     Perpustakaan Digital
                 </div>
-                <a href="#">Dashboard</a>
-                <a href="#">Data Siswa</a>
-                <a href="#">Data Guru</a>
-                <a href="#">Laporan</a>
-                <a href="#">Logout</a>
+                <a href="dashboard.php">Dashboard</a>
+                <a href="?action=data_buku">Data Buku</a>
+                <a href="?action=data_anggota">Data Anggota</a>
+                <a href="?action=data_peminjamaan">Peminjaman Buku</a>
+                <a href="logout.php" onclick="return(confirm('Yakin ingin logout!'))">Logout</a>
 
             </div>
 
@@ -79,7 +80,7 @@ if(!isset($_SESSION['id_admin'])){
                     </span>
                 </nav>
 
-                <div class="p-4">
+                <!-- <div class="p-4">
                     <div class="row">
                         <div class=" mb-3">
                             <div class="card card-dashboard">
@@ -89,12 +90,36 @@ if(!isset($_SESSION['id_admin'])){
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="card card-dashboard mt-3">
-                    
+                 <div class="p-4">
+                    <div class="row">
+                        <div class="mb-3">
+                            <div class="card card-dashboard mt-3">
+                                <?php
+                                    if(isset($_GET['action'])){
+                                        $fileName = $_GET['action'] . ".php";
+                                        if(file_exists($fileName)){
+                                            require($fileName);
+                                        }else{ 
+                                            echo "<div class='p-4'>Halaman Tidak Ditemukan!</div>";
+                                        }
+                                    }else{?>
+                                    <div class="p-4">
+                                                <div class="row">
+                                                    <div class=" mb-3">
+                                                        <h5>Selamat Datang, <?= $_SESSION['nama_admin'] ?> 👋</h5>
+                                                        <p class="text-justify text-muted">
+                                                                Selamat datang kembali di Sistem Perpustakaan Digital. Kelola data buku, anggota, dan transaksi peminjaman dengan mudah melalui dashboard ini.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                   <?php }?>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-
             </div>
         </div>
     </div>
