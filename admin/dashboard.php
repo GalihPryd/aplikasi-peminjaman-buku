@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+require_once '../config/koneksi.php';
 if(!isset($_SESSION['id_admin'])){
     header('Location: ../login-admin.php');
     exit;
@@ -73,11 +74,25 @@ if(!isset($_SESSION['id_admin'])){
             <!-- Content -->
 
             <div class="col-md-10 p-0">
-
                 <nav class="navbar navbar-expand-lg navbar-custom px-4">
-                    <span class="navbar-brand">
-                        Dashboard
-                    </span>
+                    
+                    <div class="ms-auto">
+                        <div class="dropdown">
+                            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <img src="https://ui-avatars.com/api/?name=<?= $_SESSION['nama_admin'] ?>&background=1E293B&color=cbd5e1" width="40" height="40" class="rounded-circle me-2">
+                            </a>
+
+                            <ul class="dropdown-menu dropdown-menu-end shadow border-0">
+                                <li><hr class="dropdown-divider"></li>
+
+                                <li>
+                                    <a class="dropdown-item text-muted" href="logout.php" onclick="return(confirm('Yakin ingin logout!'))">
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </nav>
 
                 <!-- <div class="p-4">
@@ -123,5 +138,7 @@ if(!isset($_SESSION['id_admin'])){
             </div>
         </div>
     </div>
+
+    <script src="../assets/js/bootstrap.min.js"></script>
 </body>
 </html>
