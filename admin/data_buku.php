@@ -7,7 +7,7 @@
     <div class="table-responsive">
 
         <table class="table table-striped table-bordered mt-3">
-            <tr class="fw-bold">
+            <tr class="fw-bold text-center">
                 <th>No</th>
                 <th>Judul Buku</th>
                 <th>Pengarang</th>
@@ -22,7 +22,7 @@
                 $no = 1;
                 $query = mysqli_query($conn, "SELECT * FROM `buku` ORDER BY id_buku DESC");
                 foreach($query as $buku){ ?>
-                    <tr>
+                    <tr class="text-center">
                         <td><?= $no++ ?></td>
                         <td><?= $buku['judul_buku'] ;?></td>
                         <td><?= $buku['pengarang'] ;?></td>
