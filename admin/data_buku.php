@@ -23,13 +23,13 @@
                 $query = mysqli_query($conn, "SELECT * FROM `buku` ORDER BY id_buku DESC");
                 foreach($query as $buku){ ?>
                     <tr class="text-center">
-                        <td><?= $no++ ?></td>
+                        <td width="2%"><?= $no++ ?></td>
                         <td><?= $buku['judul_buku'] ;?></td>
                         <td><?= $buku['pengarang'] ;?></td>
                         <td><?= $buku['penerbit'] ;?></td>
                         <td><?= $buku['tahun_terbit'] ;?></td>
                         <td><?= $buku['status'] ;?></td>
-                        <td>
+                        <td width="23%">
                             <a href="?action=edit_buku&id=<?= $buku['id_buku']; ?>" class="btn btn-warning">Edit Buku</a>
                             <a onclick="return(confirm('Yakin Ingin Menghapus Data'))" href="?action=hapus_buku&id=<?= $buku['id_buku']; ?>" class="btn btn-danger">Hapus Buku</a>
                         </td>

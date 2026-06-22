@@ -23,7 +23,7 @@
                 $query = mysqli_query($conn, "SELECT * FROM `anggota` ORDER BY id_anggota DESC");
                 foreach($query as $anggota){ ?>
                     <tr class="text-center">
-                        <td><?= $no++ ?></td>
+                        <td width="2%"><?= $no++ ?></td>
                         <td><?= $anggota['nis'] ;?></td>
                         <td><?= $anggota['nama_anggota'] ;?></td>
                         <td><?= $anggota['username'] ;?></td>

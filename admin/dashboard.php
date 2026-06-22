@@ -66,7 +66,7 @@ if(!isset($_SESSION['id_admin'])){
                 <a href="dashboard.php">Dashboard</a>
                 <a href="?action=data_buku">Data Buku</a>
                 <a href="?action=data_anggota">Data Anggota</a>
-                <a href="?action=data_peminjamaan">Peminjaman Buku</a>
+                <a href="?action=data_peminjaman">Peminjaman Buku</a>
                 <a href="logout.php" onclick="return(confirm('Yakin ingin logout!'))">Logout</a>
 
             </div>
