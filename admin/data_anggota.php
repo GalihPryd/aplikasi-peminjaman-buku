@@ -21,6 +21,7 @@
                 /** @var mysqli $conn */
                 $no = 1;
                 $query = mysqli_query($conn, "SELECT * FROM `anggota` ORDER BY id_anggota DESC");
+                if(mysqli_num_rows($query) > 0){
                 foreach($query as $anggota){ ?>
                     <tr class="text-center">
                         <td width="2%"><?= $no++ ?></td>
@@ -33,6 +34,10 @@
                             <a href="?action=edit_anggota&id=<?= $anggota['id_anggota']; ?>" class="btn btn-warning">Edit Anggota</a>
                             <a onclick="return(confirm('Yakin Ingin Menghapus Data'))" href="?action=hapus_anggota&id=<?= $anggota['id_anggota']; ?>" class="btn btn-danger">Hapus Anggota</a>
                         </td>
+                    </tr>
+                <?php }} else{?>
+                    <tr>
+                        <td colspan="7" class="text-center text-muted">Tidak Ada Data Saat Ini</td>
                     </tr>
                 <?php }?>
         </table>

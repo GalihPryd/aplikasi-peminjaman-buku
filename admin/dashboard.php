@@ -15,7 +15,7 @@ if(!isset($_SESSION['id_admin'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Admin - Aplikasi Perpustakaan Digital Sekolah</title>
     <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-
+    
     <style>
         body{
             background:#f8fafc;
@@ -67,7 +67,7 @@ if(!isset($_SESSION['id_admin'])){
                 <a href="?action=data_buku">Data Buku</a>
                 <a href="?action=data_anggota">Data Anggota</a>
                 <a href="?action=data_peminjaman">Peminjaman Buku</a>
-                <a href="logout.php" onclick="return(confirm('Yakin ingin logout!'))">Logout</a>
+                <a href="#" onclick="logout()">Logout</a>
 
             </div>
 
@@ -86,7 +86,7 @@ if(!isset($_SESSION['id_admin'])){
                                 <li><hr class="dropdown-divider"></li>
 
                                 <li>
-                                    <a class="dropdown-item text-muted" href="logout.php" onclick="return(confirm('Yakin ingin logout!'))">
+                                    <a class="dropdown-item text-muted" href="#" onclick="logout()">
                                         Logout
                                     </a>
                                 </li>
@@ -140,5 +140,22 @@ if(!isset($_SESSION['id_admin'])){
     </div>
 
     <script src="../assets/js/bootstrap.min.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+    <script>
+        function logout(){
+            Swal.fire({
+            title: 'Yakin ingin logout?',
+            text: 'Anda akan keluar dari sistem',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Ya, Logout',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if(result.isConfirmed){
+                window.location.href = 'logout.php';
+            }
+        });
+        }
+    </script>
 </body>
 </html>

@@ -1,10 +1,7 @@
 <div class="p-4">
     <div class="d-flex justify-content-between align-items-center">
-        <h3 class="semi-bold">Data Peminjaman</h3>
-        <div class="grup-button">
-            <a href="?action=tambah_peminjaman" class="btn btn-secondary">Tambah Peminjaman</a>
-            <a href="?action=data_pengembalian" class="btn btn-secondary">Data Pengembalian</a>
-        </div>
+        <h3 class="semi-bold">Data Pengembalian</h3>
+        <a href="?action=data_peminjaman" class="btn btn-secondary">Data Peminjaman</a>
     </div>
 
     <div class="table-responsive">
@@ -16,13 +13,14 @@
                 <th>Nama Anggota</th>
                 <th>Judul Buku</th>
                 <th>Tanggal Pinjam</th>
+                <th>Tanggal Pengembalian</th>
                 <th>Aksi</th>
             </tr>
             <?php
 
                 /** @var mysqli $conn */
                 $no = 1;
-                $query = mysqli_query($conn, "SELECT * FROM `transaksi`, `buku`, `anggota` WHERE buku.id_buku = transaksi.id_buku AND anggota.id_anggota = transaksi.id_anggota AND transaksi.status_transaksi = 'Peminjaman' ORDER BY transaksi.id_transaksi DESC");
+                $query = mysqli_query($conn, "SELECT * FROM `transaksi`, `buku`, `anggota` WHERE buku.id_buku = transaksi.id_buku AND anggota.id_anggota = transaksi.id_anggota AND transaksi.status_transaksi = 'Pengembalian' ORDER BY transaksi.id_transaksi DESC");
                 if(mysqli_num_rows($query) > 0){
                 foreach($query as $peminjam){ ?>
                     <tr class="text-center">
@@ -31,18 +29,12 @@
                         <td><?= $peminjam['nama_anggota'] ;?></td>
                         <td><?= $peminjam['judul_buku'] ;?></td>
                         <td><?= $peminjam['tgl_pinjam'] ;?></td>
-                        <td width="23%">
-                            <?php 
-                                $pesan = "Pengembalian Buku Oleh $peminjam[nama_anggota], Buku $peminjam[judul_buku]";
-                                $isi = "'$pesan', $peminjam[id_transaksi], $peminjam[id_buku]";
-                            ?>
-
-                            <a onclick="pengembalian(<?= $isi ?>)" class="btn btn-success">Pengembalian</a>
+                        <td><?= $peminjam['tgl_kembali'] ;?></td>
+                        <td width="10%">
                             <?php 
                                 $pesan = "Anda Yakin Ingin Menghapus Buku Oleh $peminjam[nama_anggota], Buku $peminjam[judul_buku]";
                                 $isi = "'$pesan', $peminjam[id_transaksi], $peminjam[id_buku]";
                             ?>
-
                             <a onclick="hapus(<?= $isi ?>)" class="btn btn-danger">Hapus</a>
                         </td>
                     </tr>
@@ -56,11 +48,6 @@
 </div>
 
 <script>
-    function pengembalian(pesan,id_transaksi,id_buku){
-        if(confirm(pesan)){
-            window.location.href = '?action=proses_pengembalian&id='+id_transaksi+'&buku='+id_buku;
-        }
-    }
     function hapus(pesan,id_transaksi,id_buku){
         if(confirm(pesan)){
             window.location.href = '?action=hapus_peminjaman&id='+id_transaksi+'&buku='+id_buku;
