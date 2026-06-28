@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Admin - Aplikasi Perpustakaan Digital Sekolah</title>
+    <title>Login Anggota - Aplikasi Perpustakaan Digital Sekolah</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <style>
         body{
@@ -51,7 +51,7 @@
         <div class="col-md-4">
             <div class="card login-card">
                 <div class="card-body p-5">
-                    <h3 class="text-center">Login Admin</h3>
+                    <h3 class="text-center">Login Anggota</h3>
                     <h5 class="text-center mb-4">Aplikasi Perpustakaan Digital Sekolah</h5>
                     <form method="post" class="mb-3">
                         <div class="mb-3">
@@ -63,9 +63,9 @@
                             <input type="password" class="form-control" name="password" placeholder="Masukkan Password" autocomplete="new-password">
                         </div>
 
-                        <button class="btn btn-login text-white w-100" name="loginAdmin" type="submit"> Login </button>
+                        <button class="btn btn-login text-white w-100" name="loginAnggota" type="submit"> Login </button>
                     </form>
-                    <p class="text-muted text-center">Login Sebagai Anggota <a href="login-anggota.php" class="fst-italic">Masuk Sini</a></p>
+                    <p class="text-muted text-center">Login Sebagai Admin <a href="login-admin.php" class="fst-italic">Masuk Sini</a></p>
                 </div>
 
             </div>
@@ -79,17 +79,17 @@
     <?php 
     include('config/koneksi.php');
 
-    if(isset($_POST['loginAdmin'])){
+    if(isset($_POST['loginAnggota'])){
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        $query = mysqli_query($conn, "SELECT * FROM `admin` WHERE `username` = '$username' AND `password` = '$password'");
+        $query = mysqli_query($conn, "SELECT * FROM `anggota` WHERE `username` = '$username' AND `password` = '$password'");
         if(mysqli_num_rows($query) > 0){
             $data = mysqli_fetch_array($query);
             session_start();
-            $_SESSION['id_admin'] = $data['id_admin'];
+            $_SESSION['id_anggota'] = $data['id_anggota'];
             $_SESSION['username'] = $data['username'];
-            $_SESSION['nama_admin'] = $data['nama_admin'];
+            $_SESSION['nama_anggota'] = $data['nama_anggota'];
             
             echo "
                 <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
@@ -103,7 +103,7 @@
                     timer: 3000,
                     timerProgressBar: true
                 }).then(() =>{
-                    window.location.href = 'admin/dashboard.php';
+                    window.location.href = 'anggota/dashboard.php';
                 });
                 </script>
             ";
@@ -120,7 +120,7 @@
                     timer: 3000,
                     timerProgressBar: true
                 }).then(() =>{
-                    window.location.href = 'login-admin.php';
+                    window.location.href = 'login-anggota.php';
                 });
                 </script>
             ";
